@@ -26,8 +26,10 @@ function setup() {
   liquid = new Water(220, height / 2 - 80, 160, 315, 0.5);
 
   // create a texture for the background
-  tx = createGraphics(width, height); // createGraphics: https://p5js.org/reference/p5/createGraphics/  a separate canvas to draw on, will not affect the main canvas
-  tx.angleMode(DEGREES); //angleMode: https://p5js.org/reference/p5/angleMode/ p5.js use radians by default but degrees is more direct.
+  // createGraphics: https://p5js.org/reference/p5/createGraphics/  a separate canvas to draw on, will not affect the main canvas
+  tx = createGraphics(width, height);
+  //angleMode: https://p5js.org/reference/p5/angleMode/ p5.js use radians by default but degrees is more direct.
+  tx.angleMode(DEGREES);
   tx.noStroke();
   // draw random circles for the texture for the bottle
   for (let i = 0; i < (width * height * 1) / 10; i++) {
@@ -189,6 +191,7 @@ class Water {
     let speed = mover.vel.mag(); // get the speed/direction of the star
     let dragMagnitude = this.c * speed * speed; // drag force is acceleration, so it is proportional to the square of the speed
     let dragForce = mover.vel.copy(); // create a vector for drag force
+    dragForce.mult(-1); // reverse the direction of the drag force
     dragForce.normalize(); // normalize the vector as the direction of the velocity
     dragForce.mult(dragMagnitude); // multiply the drag force by the drag magnitude
     return dragForce; // if the stars are in the water, it will apply drag
