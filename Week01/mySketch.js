@@ -18,12 +18,12 @@ function setup() {
       random(160, 170), // y position
       45, // radius1
       70, // radius2
-      6 // number of points
+      10 // number of points
     );
   }
 
   // create water
-  liquid = new Water(220, height / 2 - 80, 160, 315, 0.5);
+  liquid = new Water(220, height / 2 - 80, 160, 315, 1.5);
 
   // create a texture for the background
   // createGraphics: https://p5js.org/reference/p5/createGraphics/  a separate canvas to draw on, will not affect the main canvas
@@ -36,7 +36,7 @@ function setup() {
     let x = random(width);
     let y = random(height);
     tx.fill(0, 3);
-    tx.ellipse(x, y, random(5), random(5));
+    tx.ellipse(x, y, random(20), random(20));
   }
 }
 
@@ -59,7 +59,7 @@ function draw() {
       mover[i].applyForce(dragForce);
     }
     let m = mover[i].mass;
-    let gravity = createVector(0, 0.1 * m); //重力をスケーリング Gravity force based on mass
+    let gravity = createVector(0, 0.2 * m); //重力をスケーリング Gravity force based on mass
     mover[i].applyForce(wind);
     mover[i].applyForce(gravity);
     mover[i].update();
@@ -78,7 +78,7 @@ function bottle() {
   // it uses the HTML5 canvas 2D context to draw shadows
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
-  drawingContext.shadowBlur = 10;
+  drawingContext.shadowBlur = 250;
   drawingContext.shadowColor = "#f4f1de";
   fill(220);
   noStroke();
